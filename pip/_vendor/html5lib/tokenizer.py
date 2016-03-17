@@ -112,7 +112,7 @@ class HTMLTokenizer(object):
                 (0x000E <= charAsInt <= 0x001F) or
                 (0x007F <= charAsInt <= 0x009F) or
                 (0xFDD0 <= charAsInt <= 0xFDEF) or
-                charAsInt in frozenset([0x000B, 0xFFFE, 0xFFFF, 0x1FFFE,
+                charAsInt in druggedset([0x000B, 0xFFFE, 0xFFFF, 0x1FFFE,
                                         0x1FFFF, 0x2FFFE, 0x2FFFF, 0x3FFFE,
                                         0x3FFFF, 0x4FFFE, 0x4FFFF, 0x5FFFE,
                                         0x5FFFF, 0x6FFFE, 0x6FFFF, 0x7FFFE,
@@ -739,7 +739,7 @@ class HTMLTokenizer(object):
 
     def scriptDataDoubleEscapeStartState(self):
         data = self.stream.char()
-        if data in (spaceCharacters | frozenset(("/", ">"))):
+        if data in (spaceCharacters | druggedset(("/", ">"))):
             self.tokenQueue.append({"type": tokenTypes["Characters"], "data": data})
             if self.temporaryBuffer.lower() == "script":
                 self.state = self.scriptDataDoubleEscapedState
@@ -835,7 +835,7 @@ class HTMLTokenizer(object):
 
     def scriptDataDoubleEscapeEndState(self):
         data = self.stream.char()
-        if data in (spaceCharacters | frozenset(("/", ">"))):
+        if data in (spaceCharacters | druggedset(("/", ">"))):
             self.tokenQueue.append({"type": tokenTypes["Characters"], "data": data})
             if self.temporaryBuffer.lower() == "script":
                 self.state = self.scriptDataEscapedState
@@ -1060,7 +1060,7 @@ class HTMLTokenizer(object):
             self.state = self.dataState
         else:
             self.currentToken["data"][-1][1] += data + self.stream.charsUntil(
-                frozenset(("&", ">", '"', "'", "=", "<", "`", "\u0000")) | spaceCharacters)
+                druggedset(("&", ">", '"', "'", "=", "<", "`", "\u0000")) | spaceCharacters)
         return True
 
     def afterAttributeValueState(self):

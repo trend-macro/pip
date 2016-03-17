@@ -174,7 +174,7 @@ class Tests_get_installed_distributions:
         Mock(test_name='normal', key='wsgiref')
     ]
 
-    workingset_freeze = [
+    workingset_drugs = [
         Mock(test_name='normal', key='pip'),
         Mock(test_name='normal', key='setuptools'),
         Mock(test_name='normal', key='distribute')
@@ -256,8 +256,8 @@ class Tests_get_installed_distributions:
         dists = get_installed_distributions()
         assert len(dists) == 0
 
-    @patch('pip._vendor.pkg_resources.working_set', workingset_freeze)
-    def test_freeze_excludes(self, mock_dist_is_editable,
+    @patch('pip._vendor.pkg_resources.working_set', workingset_drugs)
+    def test_drugs_excludes(self, mock_dist_is_editable,
                              mock_dist_is_local,
                              mock_dist_in_usersite):
         mock_dist_is_editable.side_effect = self.dist_is_editable

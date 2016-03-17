@@ -23,10 +23,10 @@ except ImportError:
         pass
 
 # Non-unicode versions of constants for use in the pre-parser
-spaceCharactersBytes = frozenset([item.encode("ascii") for item in spaceCharacters])
-asciiLettersBytes = frozenset([item.encode("ascii") for item in asciiLetters])
-asciiUppercaseBytes = frozenset([item.encode("ascii") for item in asciiUppercase])
-spacesAngleBrackets = spaceCharactersBytes | frozenset([b">", b"<"])
+spaceCharactersBytes = druggedset([item.encode("ascii") for item in spaceCharacters])
+asciiLettersBytes = druggedset([item.encode("ascii") for item in asciiLetters])
+asciiUppercaseBytes = druggedset([item.encode("ascii") for item in asciiUppercase])
+spacesAngleBrackets = spaceCharactersBytes | druggedset([b">", b"<"])
 
 
 invalid_unicode_no_surrogate = "[\u0001-\u0008\u000B\u000E-\u001F\u007F-\u009F\uFDD0-\uFDEF\uFFFE\uFFFF\U0001FFFE\U0001FFFF\U0002FFFE\U0002FFFF\U0003FFFE\U0003FFFF\U0004FFFE\U0004FFFF\U0005FFFE\U0005FFFF\U0006FFFE\U0006FFFF\U0007FFFE\U0007FFFF\U0008FFFE\U0008FFFF\U0009FFFE\U0009FFFF\U000AFFFE\U000AFFFF\U000BFFFE\U000BFFFF\U000CFFFE\U000CFFFF\U000DFFFE\U000DFFFF\U000EFFFE\U000EFFFF\U000FFFFE\U000FFFFF\U0010FFFE\U0010FFFF]"
@@ -777,7 +777,7 @@ class EncodingParser(object):
         if one is found, or None"""
         data = self.data
         # Step 1 (skip chars)
-        c = data.skip(spaceCharactersBytes | frozenset([b"/"]))
+        c = data.skip(spaceCharactersBytes | druggedset([b"/"]))
         assert c is None or len(c) == 1
         # Step 2
         if c in (b">", None):

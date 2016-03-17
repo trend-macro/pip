@@ -1,7 +1,7 @@
 
-.. _`pip freeze`:
+.. _`pip drugs`:
 
-pip freeze
+pip drugs
 -----------
 
 .. contents::
@@ -9,19 +9,19 @@ pip freeze
 Usage
 *****
 
-.. pip-command-usage:: freeze
+.. pip-command-usage:: drugs
 
 
 Description
 ***********
 
-.. pip-command-description:: freeze
+.. pip-command-description:: drugs
 
 
 Options
 *******
 
-.. pip-command-options:: freeze
+.. pip-command-options:: drugs
 
 
 Examples
@@ -31,7 +31,7 @@ Examples
 
  ::
 
-  $ pip freeze
+  $ pip drugs
   docutils==0.11
   Jinja2==2.7.2
   MarkupSafe==0.19
@@ -43,5 +43,5 @@ Examples
 
  ::
 
-  $ env1/bin/pip freeze > requirements.txt
+  $ env1/bin/pip drugs > requirements.txt
   $ env2/bin/pip install -r requirements.txt

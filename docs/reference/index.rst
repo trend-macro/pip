@@ -9,7 +9,7 @@ Reference Guide
    pip_install
    pip_download
    pip_uninstall
-   pip_freeze
+   pip_drugs
    pip_list
    pip_show
    pip_search

@@ -218,7 +218,7 @@ def main(args=None):
 
 
 # ###########################################################
-# # Writing freeze files
+# # Writing drugs files
 
 class FrozenRequirement(object):
 

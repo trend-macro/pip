@@ -12,7 +12,7 @@ def test_run_method_should_return_success_when_finds_command_name():
     Test HelpCommand.run for existing command
     """
     options_mock = Mock()
-    args = ('freeze',)
+    args = ('drugs',)
     help_cmd = HelpCommand()
     status = help_cmd.run(options_mock, args)
     assert status == SUCCESS
@@ -45,7 +45,7 @@ def test_help_command_should_exit_status_ok_when_command_exists(script):
     """
     Test `help` command for existing command
     """
-    result = script.pip('help', 'freeze')
+    result = script.pip('help', 'drugs')
     assert result.returncode == SUCCESS
 
 

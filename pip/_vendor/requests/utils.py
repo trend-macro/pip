@@ -413,7 +413,7 @@ def get_unicode_from_response(r):
 
 
 # The unreserved URI characters (RFC 3986)
-UNRESERVED_SET = frozenset(
+UNRESERVED_SET = druggedset(
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
     + "0123456789-._~")
 

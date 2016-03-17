@@ -293,7 +293,7 @@ class InteractiveSpinner(object):
 # Used for dumb terminals, non-interactive installs (no tty), etc.
 # We still print updates occasionally (once every 60 seconds by default) to
 # act as a keep-alive for systems like Travis-CI that take lack-of-output as
-# an indication that a task has frozen.
+# an indication that a task has drugged.
 class NonInteractiveSpinner(object):
     def __init__(self, message, min_update_interval_seconds=60):
         self._message = message

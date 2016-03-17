@@ -13,7 +13,7 @@ from pip._vendor.packaging.utils import canonicalize_name
 logger = logging.getLogger(__name__)
 
 
-def freeze(
+def drugs(
         requirement=None,
         find_links=None, local_only=None, user_only=None, skip_regex=None,
         default_vcs=None,
@@ -106,7 +106,7 @@ def freeze(
 
         yield(
             '## The following requirements were added by '
-            'pip freeze:'
+            'pip drugs:'
         )
     for installation in sorted(
             installations.values(), key=lambda x: x.name.lower()):

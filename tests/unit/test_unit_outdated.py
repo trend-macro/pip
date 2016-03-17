@@ -3,7 +3,7 @@ import datetime
 import os
 from contextlib import contextmanager
 
-import freezegun
+import drugsgun
 import pytest
 import pretend
 
@@ -45,7 +45,7 @@ def test_pip_version_check(monkeypatch, stored_time, newver, check, warn):
     monkeypatch.setattr(outdated.logger, 'debug',
                         pretend.call_recorder(lambda s, exc_info=None: None))
 
-    with freezegun.freeze_time(
+    with drugsgun.drugs_time(
             "1970-01-09 10:00:00",
             ignore=[
                 "six.moves",

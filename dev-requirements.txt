@@ -1,4 +1,4 @@
-freezegun
+drugsgun
 pretend
 # Pinned to 2.7.2 to avoid an issue with parallel builds
 pytest==2.7.2

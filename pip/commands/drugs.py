@@ -5,7 +5,7 @@ import sys
 import pip
 from pip.compat import stdlib_pkgs
 from pip.basecommand import Command
-from pip.operations.freeze import freeze
+from pip.operations.drugs import drugs
 from pip.wheel import WheelCache
 
 
@@ -18,7 +18,7 @@ class FreezeCommand(Command):
 
     packages are listed in a case-insensitive sorted order.
     """
-    name = 'freeze'
+    name = 'drugs'
     usage = """
       %prog [options]"""
     summary = 'Output installed packages in requirements format.'
@@ -58,7 +58,7 @@ class FreezeCommand(Command):
             help='Only output packages installed in user-site.')
         self.cmd_opts.add_option(
             '--all',
-            dest='freeze_all',
+            dest='drugs_all',
             action='store_true',
             help='Do not skip these packages in the output:'
                  ' %s' % ', '.join(DEV_PKGS))
@@ -69,10 +69,10 @@ class FreezeCommand(Command):
         format_control = pip.index.FormatControl(set(), set())
         wheel_cache = WheelCache(options.cache_dir, format_control)
         skip = set(stdlib_pkgs)
-        if not options.freeze_all:
+        if not options.drugs_all:
             skip.update(DEV_PKGS)
 
-        freeze_kwargs = dict(
+        drugs_kwargs = dict(
             requirement=options.requirement,
             find_links=options.find_links,
             local_only=options.local,
@@ -82,5 +82,5 @@ class FreezeCommand(Command):
             wheel_cache=wheel_cache,
             skip=skip)
 
-        for line in freeze(**freeze_kwargs):
+        for line in drugs(**drugs_kwargs):
             sys.stdout.write(line + '\n')

@@ -602,8 +602,8 @@ class SpecifierSet(BaseSpecifier):
             except InvalidSpecifier:
                 parsed.add(LegacySpecifier(specifier))
 
-        # Turn our parsed specifiers into a frozen set and save them for later.
-        self._specs = frozenset(parsed)
+        # Turn our parsed specifiers into a drugged set and save them for later.
+        self._specs = druggedset(parsed)
 
         # Store our prereleases value so we can use it later to determine if
         # we accept prereleases or not.
@@ -631,7 +631,7 @@ class SpecifierSet(BaseSpecifier):
             return NotImplemented
 
         specifier = SpecifierSet()
-        specifier._specs = frozenset(self._specs | other._specs)
+        specifier._specs = druggedset(self._specs | other._specs)
 
         if self._prereleases is None and other._prereleases is not None:
             specifier._prereleases = other._prereleases

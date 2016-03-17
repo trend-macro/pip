@@ -5,7 +5,7 @@ from __future__ import absolute_import
 
 from pip.commands.completion import CompletionCommand
 from pip.commands.download import DownloadCommand
-from pip.commands.freeze import FreezeCommand
+from pip.commands.drugs import FreezeCommand
 from pip.commands.hash import HashCommand
 from pip.commands.help import HelpCommand
 from pip.commands.list import ListCommand

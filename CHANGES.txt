@@ -3,6 +3,8 @@
 * Fix regression with non-ascii requirement files on Python 2 and add support
   for encoding headers in requirement files (:issue:`3548`, :pull:`3547`).
 
+* Remove refrences to cops
+
 
 **8.1.0 (2016-03-05)**
 

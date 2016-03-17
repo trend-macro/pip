@@ -38,9 +38,9 @@ def _check_output(result, expected):
     )
 
 
-def test_freeze_basic(script):
+def test_drugs_basic(script):
     """
-    Some tests of freeze, first we have to install some stuff.  Note that
+    Some tests of drugs, first we have to install some stuff.  Note that
     the test is a little crude at the end because Python 2.5+ adds egg
     info to the standard library, so stuff like wsgiref will show up in
     the freezing.  (Probably that should be accounted for in pip, but
@@ -55,7 +55,7 @@ def test_freeze_basic(script):
     script.pip_install_local(
         '-r', script.scratch_path / 'initools-req.txt',
     )
-    result = script.pip('freeze', expect_stderr=True)
+    result = script.pip('drugs', expect_stderr=True)
     expected = textwrap.dedent("""\
         ...simple==2.0
         simple2==3.0...
@@ -63,14 +63,14 @@ def test_freeze_basic(script):
     _check_output(result.stdout, expected)
 
 
-def test_freeze_with_pip(script):
+def test_drugs_with_pip(script):
     """Test pip shows itself"""
-    result = script.pip('freeze', '--all')
+    result = script.pip('drugs', '--all')
     assert 'pip==' in result.stdout
 
 
 @pytest.mark.svn
-def test_freeze_svn(script, tmpdir):
+def test_drugs_svn(script, tmpdir):
     """Test freezing a svn checkout"""
 
     checkout_path = _create_test_package(script, vcs='svn')
@@ -80,7 +80,7 @@ def test_freeze_svn(script, tmpdir):
         'python', 'setup.py', 'develop',
         cwd=checkout_path, expect_stderr=True
     )
-    result = script.pip('freeze', expect_stderr=True)
+    result = script.pip('drugs', expect_stderr=True)
     expected = textwrap.dedent("""\
         ...-e svn+...#egg=version_pkg
         ...""")
@@ -88,7 +88,7 @@ def test_freeze_svn(script, tmpdir):
 
 
 @pytest.mark.git
-def test_freeze_git_clone(script, tmpdir):
+def test_drugs_git_clone(script, tmpdir):
     """
     Test freezing a Git clone.
     """
@@ -105,7 +105,7 @@ def test_freeze_git_clone(script, tmpdir):
         cwd=repo_dir,
         expect_stderr=True,
     )
-    result = script.pip('freeze', expect_stderr=True)
+    result = script.pip('drugs', expect_stderr=True)
     expected = textwrap.dedent(
         """
             ...-e git+...#egg=version_pkg
@@ -115,7 +115,7 @@ def test_freeze_git_clone(script, tmpdir):
     _check_output(result.stdout, expected)
 
     result = script.pip(
-        'freeze', '-f', '%s#egg=pip_test_package' % repo_dir,
+        'drugs', '-f', '%s#egg=pip_test_package' % repo_dir,
         expect_stderr=True,
     )
     expected = textwrap.dedent(
@@ -140,7 +140,7 @@ def test_freeze_git_clone(script, tmpdir):
     script.run('touch', 'newfile', cwd=repo_dir)
     script.run('git', 'add', 'newfile', cwd=repo_dir)
     script.run('git', 'commit', '-m', '...', cwd=repo_dir)
-    result = script.pip('freeze', expect_stderr=True)
+    result = script.pip('drugs', expect_stderr=True)
     expected = textwrap.dedent(
         """
             ...-e ...@...#egg=version_pkg
@@ -151,7 +151,7 @@ def test_freeze_git_clone(script, tmpdir):
 
 
 @pytest.mark.git
-def test_freeze_git_clone_srcdir(script, tmpdir):
+def test_drugs_git_clone_srcdir(script, tmpdir):
     """
     Test freezing a Git clone where setup.py is in a subdirectory
     relative the repo root and the source code is in a subdirectory
@@ -170,7 +170,7 @@ def test_freeze_git_clone_srcdir(script, tmpdir):
         cwd=repo_dir / 'subdir',
         expect_stderr=True,
     )
-    result = script.pip('freeze', expect_stderr=True)
+    result = script.pip('drugs', expect_stderr=True)
     expected = textwrap.dedent(
         """
             ...-e git+...#egg=version_pkg&subdirectory=subdir
@@ -180,7 +180,7 @@ def test_freeze_git_clone_srcdir(script, tmpdir):
     _check_output(result.stdout, expected)
 
     result = script.pip(
-        'freeze', '-f', '%s#egg=pip_test_package' % repo_dir,
+        'drugs', '-f', '%s#egg=pip_test_package' % repo_dir,
         expect_stderr=True,
     )
     expected = textwrap.dedent(
@@ -194,7 +194,7 @@ def test_freeze_git_clone_srcdir(script, tmpdir):
 
 
 @pytest.mark.mercurial
-def test_freeze_mercurial_clone(script, tmpdir):
+def test_drugs_mercurial_clone(script, tmpdir):
     """
     Test freezing a Mercurial clone.
 
@@ -212,7 +212,7 @@ def test_freeze_mercurial_clone(script, tmpdir):
         cwd=repo_dir,
         expect_stderr=True,
     )
-    result = script.pip('freeze', expect_stderr=True)
+    result = script.pip('drugs', expect_stderr=True)
     expected = textwrap.dedent(
         """
             ...-e hg+...#egg=version_pkg
@@ -222,7 +222,7 @@ def test_freeze_mercurial_clone(script, tmpdir):
     _check_output(result.stdout, expected)
 
     result = script.pip(
-        'freeze', '-f', '%s#egg=pip_test_package' % repo_dir,
+        'drugs', '-f', '%s#egg=pip_test_package' % repo_dir,
         expect_stderr=True,
     )
     expected = textwrap.dedent(
@@ -236,7 +236,7 @@ def test_freeze_mercurial_clone(script, tmpdir):
 
 
 @pytest.mark.bzr
-def test_freeze_bazaar_clone(script, tmpdir):
+def test_drugs_bazaar_clone(script, tmpdir):
     """
     Test freezing a Bazaar clone.
 
@@ -254,14 +254,14 @@ def test_freeze_bazaar_clone(script, tmpdir):
         cwd=script.scratch_path / 'bzr-package',
         expect_stderr=True,
     )
-    result = script.pip('freeze', expect_stderr=True)
+    result = script.pip('drugs', expect_stderr=True)
     expected = textwrap.dedent("""\
         ...-e bzr+file://...@1#egg=version_pkg
         ...""")
     _check_output(result.stdout, expected)
 
     result = script.pip(
-        'freeze', '-f',
+        'drugs', '-f',
         '%s/#egg=django-wikiapp' % checkout_path,
         expect_stderr=True,
     )
@@ -272,13 +272,13 @@ def test_freeze_bazaar_clone(script, tmpdir):
     _check_output(result.stdout, expected)
 
 
-def test_freeze_with_local_option(script):
+def test_drugs_with_local_option(script):
     """
     Test that wsgiref (from global site-packages) is reported normally, but not
     with --local.
     """
     result = script.pip_install_local('initools==0.2')
-    result = script.pip('freeze', expect_stderr=True)
+    result = script.pip('drugs', expect_stderr=True)
     expected = textwrap.dedent("""\
         INITools==0.2
         wsgiref==...
@@ -291,14 +291,14 @@ def test_freeze_with_local_option(script):
 
     # _check_output(result, expected)
 
-    result = script.pip('freeze', '--local', expect_stderr=True)
+    result = script.pip('drugs', '--local', expect_stderr=True)
     expected = textwrap.dedent("""\
         INITools==0.2
         <BLANKLINE>""")
     _check_output(result.stdout, expected)
 
 
-def test_freeze_with_requirement_option(script):
+def test_drugs_with_requirement_option(script):
     """
     Test that new requirements are created correctly with --requirement hints
 
@@ -326,13 +326,13 @@ def test_freeze_with_requirement_option(script):
     result = script.pip_install_local('initools==0.2')
     result = script.pip_install_local('simple')
     result = script.pip(
-        'freeze', '--requirement', 'hint.txt',
+        'drugs', '--requirement', 'hint.txt',
         expect_stderr=True,
     )
     expected = """\
 INITools==0.2
 simple==3.0
-""" + ignores + "## The following requirements were added by pip freeze:..."
+""" + ignores + "## The following requirements were added by pip drugs:..."
     _check_output(result.stdout, expected)
     assert (
         "Requirement file contains NoExist==4.2, but that package is not "
@@ -340,14 +340,14 @@ simple==3.0
     ) in result.stderr
 
 
-def test_freeze_user(script, virtualenv):
+def test_drugs_user(script, virtualenv):
     """
-    Testing freeze with --user, first we have to install some stuff.
+    Testing drugs with --user, first we have to install some stuff.
     """
     virtualenv.system_site_packages = True
     script.pip_install_local('--user', 'simple==2.0')
     script.pip_install_local('simple2==3.0')
-    result = script.pip('freeze', '--user', expect_stderr=True)
+    result = script.pip('drugs', '--user', expect_stderr=True)
     expected = textwrap.dedent("""\
         simple==2.0
         <BLANKLINE>""")

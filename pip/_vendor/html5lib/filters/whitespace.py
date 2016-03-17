@@ -11,7 +11,7 @@ SPACES_REGEX = re.compile("[%s]+" % spaceCharacters)
 
 class Filter(_base.Filter):
 
-    spacePreserveElements = frozenset(["pre", "textarea"] + list(rcdataElements))
+    spacePreserveElements = druggedset(["pre", "textarea"] + list(rcdataElements))
 
     def __iter__(self):
         preserve = 0

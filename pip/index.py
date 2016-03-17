@@ -1020,7 +1020,7 @@ def fmt_ctl_formats(fmt_ctl, canonical_name):
         result.discard('source')
     elif ':all:' in fmt_ctl.no_binary:
         result.discard('binary')
-    return frozenset(result)
+    return druggedset(result)
 
 
 def fmt_ctl_no_binary(fmt_ctl):

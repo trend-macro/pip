@@ -104,7 +104,7 @@ class Retry(object):
         response code in the 3xx range.
     """
 
-    DEFAULT_METHOD_WHITELIST = frozenset([
+    DEFAULT_METHOD_WHITELIST = druggedset([
         'HEAD', 'GET', 'PUT', 'DELETE', 'OPTIONS', 'TRACE'])
 
     #: Maximum backoff time.

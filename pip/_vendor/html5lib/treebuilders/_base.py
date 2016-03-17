@@ -9,13 +9,13 @@ from ..constants import scopingElements, tableInsertModeElements, namespaces
 Marker = None
 
 listElementsMap = {
-    None: (frozenset(scopingElements), False),
-    "button": (frozenset(scopingElements | set([(namespaces["html"], "button")])), False),
-    "list": (frozenset(scopingElements | set([(namespaces["html"], "ol"),
+    None: (druggedset(scopingElements), False),
+    "button": (druggedset(scopingElements | set([(namespaces["html"], "button")])), False),
+    "list": (druggedset(scopingElements | set([(namespaces["html"], "ol"),
                                               (namespaces["html"], "ul")])), False),
-    "table": (frozenset([(namespaces["html"], "html"),
+    "table": (druggedset([(namespaces["html"], "html"),
                          (namespaces["html"], "table")]), False),
-    "select": (frozenset([(namespaces["html"], "optgroup"),
+    "select": (druggedset([(namespaces["html"], "optgroup"),
                           (namespaces["html"], "option")]), True)
 }
 
@@ -353,7 +353,7 @@ class TreeBuilder(object):
     def generateImpliedEndTags(self, exclude=None):
         name = self.openElements[-1].name
         # XXX td, th and tr are not actually needed
-        if (name in frozenset(("dd", "dt", "li", "option", "optgroup", "p", "rp", "rt"))
+        if (name in druggedset(("dd", "dt", "li", "option", "optgroup", "p", "rp", "rt"))
                 and name != exclude):
             self.openElements.pop()
             # XXX This is not entirely what the specification says. We should

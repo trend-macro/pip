@@ -47,14 +47,14 @@ installed by pip in any particular order.
 
 In practice, there are 4 common uses of Requirements files:
 
-1. Requirements files are used to hold the result from :ref:`pip freeze` for the
+1. Requirements files are used to hold the result from :ref:`pip drugs` for the
    purpose of achieving :ref:`repeatable installations <Repeatability>`.  In
    this case, your requirement file contains a pinned version of everything that
-   was installed when `pip freeze` was run.
+   was installed when `pip drugs` was run.
 
    ::
 
-     pip freeze > requirements.txt
+     pip drugs > requirements.txt
      pip install -r requirements.txt
 
 2. Requirements files are used to force pip to properly resolve dependencies.
@@ -107,7 +107,7 @@ not by discovering `requirements.txt` files embedded in projects.
 See also:
 
 * :ref:`Requirements File Format`
-* :ref:`pip freeze`
+* :ref:`pip drugs`
 * `"setup.py vs requirements.txt" (an article by Donald Stufft)
   <https://caremad.io/2013/07/setup-vs-requirement/>`_
 
@@ -334,7 +334,7 @@ look like this:
 
 Each subcommand can be configured optionally in its own section so that every
 global setting with the same name will be overridden; e.g. decreasing the
-``timeout`` to ``10`` seconds when running the `freeze`
+``timeout`` to ``10`` seconds when running the `drugs`
 (`Freezing Requirements <./#freezing-requirements>`_) command and using
 ``60`` seconds for all other commands is possible with:
 
@@ -343,7 +343,7 @@ global setting with the same name will be overridden; e.g. decreasing the
     [global]
     timeout = 60
 
-    [freeze]
+    [drugs]
     timeout = 10
 
 
@@ -604,7 +604,7 @@ protects you from bugs or incompatibilities in newly released versions::
     SomePackage == 1.2.3
     DependencyOfSomePackage == 4.5.6
 
-Using :ref:`pip freeze` to generate the requirements file will ensure that not
+Using :ref:`pip drugs` to generate the requirements file will ensure that not
 only the top-level dependencies are included but their sub-dependencies as
 well, and so on. Perform the installation using :ref:`--no-deps
 <install_--no-deps>` for an extra dose of insurance against installing

@@ -180,7 +180,7 @@ class HTMLParser(object):
                         currentNodeNamespace == self.tree.defaultNamespace or
                         (self.isMathMLTextIntegrationPoint(currentNode) and
                          ((type == StartTagToken and
-                           token["name"] not in frozenset(["mglyph", "malignmark"])) or
+                           token["name"] not in druggedset(["mglyph", "malignmark"])) or
                           type in (CharactersToken, SpaceCharactersToken))) or
                         (currentNodeNamespace == namespaces["mathml"] and
                          currentNodeName == "annotation-xml" and
@@ -973,7 +973,7 @@ def getPhases(debug):
 
         # the real deal
         def processEOF(self):
-            allowed_elements = frozenset(("dd", "dt", "li", "p", "tbody", "td",
+            allowed_elements = druggedset(("dd", "dt", "li", "p", "tbody", "td",
                                           "tfoot", "th", "thead", "tr", "body",
                                           "html"))
             for node in self.tree.openElements[::-1]:
@@ -1319,7 +1319,7 @@ def getPhases(debug):
                 return
             elif self.tree.openElements[-1].name != "body":
                 for node in self.tree.openElements[2:]:
-                    if node.name not in frozenset(("dd", "dt", "li", "optgroup",
+                    if node.name not in druggedset(("dd", "dt", "li", "optgroup",
                                                    "option", "p", "rp", "rt",
                                                    "tbody", "td", "tfoot",
                                                    "th", "thead", "tr", "body",
@@ -1535,7 +1535,7 @@ def getPhases(debug):
                 if lastNode.parent:
                     lastNode.parent.removeChild(lastNode)
 
-                if commonAncestor.name in frozenset(("table", "tbody", "tfoot", "thead", "tr")):
+                if commonAncestor.name in druggedset(("table", "tbody", "tfoot", "thead", "tr")):
                     parent, insertBefore = self.tree.getTableMisnestedNodePosition()
                     parent.insertBefore(lastNode, insertBefore)
                 else:
@@ -2354,7 +2354,7 @@ def getPhases(debug):
             return self.parser.phases["inSelect"].processEndTag(token)
 
     class InForeignContentPhase(Phase):
-        breakoutElements = frozenset(["b", "big", "blockquote", "body", "br",
+        breakoutElements = druggedset(["b", "big", "blockquote", "body", "br",
                                       "center", "code", "dd", "div", "dl", "dt",
                                       "em", "embed", "h1", "h2", "h3",
                                       "h4", "h5", "h6", "head", "hr", "i", "img",

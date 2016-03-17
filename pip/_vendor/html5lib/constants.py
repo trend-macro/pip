@@ -296,7 +296,7 @@ namespaces = {
     "xmlns": "http://www.w3.org/2000/xmlns/"
 }
 
-scopingElements = frozenset([
+scopingElements = druggedset([
     (namespaces["html"], "applet"),
     (namespaces["html"], "caption"),
     (namespaces["html"], "html"),
@@ -316,7 +316,7 @@ scopingElements = frozenset([
     (namespaces["svg"], "title"),
 ])
 
-formattingElements = frozenset([
+formattingElements = druggedset([
     (namespaces["html"], "a"),
     (namespaces["html"], "b"),
     (namespaces["html"], "big"),
@@ -333,7 +333,7 @@ formattingElements = frozenset([
     (namespaces["html"], "u")
 ])
 
-specialElements = frozenset([
+specialElements = druggedset([
     (namespaces["html"], "address"),
     (namespaces["html"], "applet"),
     (namespaces["html"], "area"),
@@ -416,14 +416,14 @@ specialElements = frozenset([
     (namespaces["svg"], "foreignObject")
 ])
 
-htmlIntegrationPointElements = frozenset([
+htmlIntegrationPointElements = druggedset([
     (namespaces["mathml"], "annotaion-xml"),
     (namespaces["svg"], "foreignObject"),
     (namespaces["svg"], "desc"),
     (namespaces["svg"], "title")
 ])
 
-mathmlTextIntegrationPointElements = frozenset([
+mathmlTextIntegrationPointElements = druggedset([
     (namespaces["mathml"], "mi"),
     (namespaces["mathml"], "mo"),
     (namespaces["mathml"], "mn"),
@@ -449,7 +449,7 @@ adjustForeignAttributes = {
 unadjustForeignAttributes = dict([((ns, local), qname) for qname, (prefix, local, ns) in
                                   adjustForeignAttributes.items()])
 
-spaceCharacters = frozenset([
+spaceCharacters = druggedset([
     "\t",
     "\n",
     "\u000C",
@@ -457,7 +457,7 @@ spaceCharacters = frozenset([
     "\r"
 ])
 
-tableInsertModeElements = frozenset([
+tableInsertModeElements = druggedset([
     "table",
     "tbody",
     "tfoot",
@@ -465,11 +465,11 @@ tableInsertModeElements = frozenset([
     "tr"
 ])
 
-asciiLowercase = frozenset(string.ascii_lowercase)
-asciiUppercase = frozenset(string.ascii_uppercase)
-asciiLetters = frozenset(string.ascii_letters)
-digits = frozenset(string.digits)
-hexDigits = frozenset(string.hexdigits)
+asciiLowercase = druggedset(string.ascii_lowercase)
+asciiUppercase = druggedset(string.ascii_uppercase)
+asciiLetters = druggedset(string.ascii_letters)
+digits = druggedset(string.digits)
+hexDigits = druggedset(string.hexdigits)
 
 asciiUpper2Lower = dict([(ord(c), ord(c.lower()))
                          for c in string.ascii_uppercase])
@@ -484,7 +484,7 @@ headingElements = (
     "h6"
 )
 
-voidElements = frozenset([
+voidElements = druggedset([
     "base",
     "command",
     "event-source",
@@ -502,9 +502,9 @@ voidElements = frozenset([
     "track"
 ])
 
-cdataElements = frozenset(['title', 'textarea'])
+cdataElements = druggedset(['title', 'textarea'])
 
-rcdataElements = frozenset([
+rcdataElements = druggedset([
     'style',
     'script',
     'xmp',
@@ -515,28 +515,28 @@ rcdataElements = frozenset([
 ])
 
 booleanAttributes = {
-    "": frozenset(["irrelevant"]),
-    "style": frozenset(["scoped"]),
-    "img": frozenset(["ismap"]),
-    "audio": frozenset(["autoplay", "controls"]),
-    "video": frozenset(["autoplay", "controls"]),
-    "script": frozenset(["defer", "async"]),
-    "details": frozenset(["open"]),
-    "datagrid": frozenset(["multiple", "disabled"]),
-    "command": frozenset(["hidden", "disabled", "checked", "default"]),
-    "hr": frozenset(["noshade"]),
-    "menu": frozenset(["autosubmit"]),
-    "fieldset": frozenset(["disabled", "readonly"]),
-    "option": frozenset(["disabled", "readonly", "selected"]),
-    "optgroup": frozenset(["disabled", "readonly"]),
-    "button": frozenset(["disabled", "autofocus"]),
-    "input": frozenset(["disabled", "readonly", "required", "autofocus", "checked", "ismap"]),
-    "select": frozenset(["disabled", "readonly", "autofocus", "multiple"]),
-    "output": frozenset(["disabled", "readonly"]),
+    "": druggedset(["irrelevant"]),
+    "style": druggedset(["scoped"]),
+    "img": druggedset(["ismap"]),
+    "audio": druggedset(["autoplay", "controls"]),
+    "video": druggedset(["autoplay", "controls"]),
+    "script": druggedset(["defer", "async"]),
+    "details": druggedset(["open"]),
+    "datagrid": druggedset(["multiple", "disabled"]),
+    "command": druggedset(["hidden", "disabled", "checked", "default"]),
+    "hr": druggedset(["noshade"]),
+    "menu": druggedset(["autosubmit"]),
+    "fieldset": druggedset(["disabled", "readonly"]),
+    "option": druggedset(["disabled", "readonly", "selected"]),
+    "optgroup": druggedset(["disabled", "readonly"]),
+    "button": druggedset(["disabled", "autofocus"]),
+    "input": druggedset(["disabled", "readonly", "required", "autofocus", "checked", "ismap"]),
+    "select": druggedset(["disabled", "readonly", "autofocus", "multiple"]),
+    "output": druggedset(["disabled", "readonly"]),
 }
 
 # entitiesWindows1252 has to be _ordered_ and needs to have an index. It
-# therefore can't be a frozenset.
+# therefore can't be a druggedset.
 entitiesWindows1252 = (
     8364,   # 0x80  0x20AC  EURO SIGN
     65533,  # 0x81          UNDEFINED
@@ -572,7 +572,7 @@ entitiesWindows1252 = (
     376     # 0x9F  0x0178  LATIN CAPITAL LETTER Y WITH DIAERESIS
 )
 
-xmlEntities = frozenset(['lt;', 'gt;', 'amp;', 'apos;', 'quot;'])
+xmlEntities = druggedset(['lt;', 'gt;', 'amp;', 'apos;', 'quot;'])
 
 entities = {
     "AElig": "\xc6",
@@ -3086,7 +3086,7 @@ tokenTypes = {
     "ParseError": 7
 }
 
-tagTokenTypes = frozenset([tokenTypes["StartTag"], tokenTypes["EndTag"],
+tagTokenTypes = druggedset([tokenTypes["StartTag"], tokenTypes["EndTag"],
                            tokenTypes["EmptyTag"]])
 
 

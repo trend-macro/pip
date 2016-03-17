@@ -225,9 +225,9 @@ def test_git_works_with_editable_non_origin_repo(script):
     version_pkg_path = _create_test_package(script)
     script.pip('install', '-e', version_pkg_path.abspath)
 
-    # 'freeze'ing this should not fall over, but should result in stderr output
+    # 'drug'ing this should not fall over, but should result in stderr output
     # warning
-    result = script.pip('freeze', expect_stderr=True)
+    result = script.pip('drugs', expect_stderr=True)
     assert "Error when trying to get requirement" in result.stderr
     assert "Could not determine repository location" in result.stdout
     assert "version-pkg==0.1" in result.stdout

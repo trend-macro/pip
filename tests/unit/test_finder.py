@@ -529,12 +529,12 @@ def test_find_all_candidates_find_links_and_index(data):
 
 def test_fmt_ctl_matches():
     fmt = FormatControl(set(), set())
-    assert fmt_ctl_formats(fmt, "fred") == frozenset(["source", "binary"])
+    assert fmt_ctl_formats(fmt, "fred") == druggedset(["source", "binary"])
     fmt = FormatControl(set(["fred"]), set())
-    assert fmt_ctl_formats(fmt, "fred") == frozenset(["source"])
+    assert fmt_ctl_formats(fmt, "fred") == druggedset(["source"])
     fmt = FormatControl(set(["fred"]), set([":all:"]))
-    assert fmt_ctl_formats(fmt, "fred") == frozenset(["source"])
+    assert fmt_ctl_formats(fmt, "fred") == druggedset(["source"])
     fmt = FormatControl(set(), set(["fred"]))
-    assert fmt_ctl_formats(fmt, "fred") == frozenset(["binary"])
+    assert fmt_ctl_formats(fmt, "fred") == druggedset(["binary"])
     fmt = FormatControl(set([":all:"]), set(["fred"]))
-    assert fmt_ctl_formats(fmt, "fred") == frozenset(["binary"])
+    assert fmt_ctl_formats(fmt, "fred") == druggedset(["binary"])

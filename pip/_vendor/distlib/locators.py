@@ -1141,7 +1141,7 @@ class DependencyFinder(object):
         if unmatched:
             # can't replace other with provider
             problems.add(('cantreplace', provider, other,
-                          frozenset(unmatched)))
+                          druggedset(unmatched)))
             result = False
         else:
             # can replace other with provider
